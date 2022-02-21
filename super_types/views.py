@@ -11,9 +11,4 @@ def super_types_list(request):
     serializer = SuperTypesSerializer(super_type, many=True)
     return Response(serializer.data)
 
-    #elif request.method == 'POST':
-        #serializer = SuperTypesSerializer(data=request.data)
-        #serializer.is_valid(raise_exception=True)
-        #serializer.save()
-        #return Response(serializer.data, status=status.HTTP_201_CREATED)
         
