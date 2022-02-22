@@ -34,3 +34,23 @@ def super_detail(request, pk):
     elif request.method == 'DELETE':
         super.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+def super_type_detail(request):
+    type_param = request.query_params.get('type')
+    if type_param == 'heroes':
+        records = Super.objects.filter(super__type='1')
+        serializer = SuperSerializer(records, data=request.data)
+        print(type_param)
+        return Response(serializer.data)
+
+    elif type_param == 'villians':
+        records = Super.objects.filter(super__type='2')
+        serializer = SuperSerializer(records, data=request.data)
+        print(type_param)
+        return Response(serializer.data)
+    
+    else:
+        records = Super.objects.all()
+        serializer = SuperSerializer(records)
+        return Response(serializer.data, status=status.HTTP_200_OK)
