@@ -37,7 +37,9 @@ def super_detail(request, pk):
 
 @api_view(['GET'])
 def super_type_detail(request):
-    type_param = request.query_params.get('type')
+    type_param = Super.objects.all()
+    custom_response_dictionary = {}
+
     if type_param == 'heroes':
         records = Super.objects.filter(super__type='1')
         serializer = SuperSerializer(records, data=request.data)
